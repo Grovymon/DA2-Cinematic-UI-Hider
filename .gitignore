@@ -1,0 +1,15 @@
+# Build and package output
+artifacts/
+build/
+*.pdb
+
+# Local runtime files
+DA2CinematicUIHider.log
+*.user.ini
+
+# IDE and OS files
+.vs/
+.vscode/
+*.suo
+Thumbs.db
+Desktop.ini

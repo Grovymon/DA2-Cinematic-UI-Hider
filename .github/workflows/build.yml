@@ -1,0 +1,40 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-x86:
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Configure Win32 build
+        run: cmake -S . -B build -A Win32
+
+      - name: Build Win32 Release
+        run: cmake --build build --config Release
+
+      - name: Run deterministic tests
+        run: ctest --test-dir build -C Release --output-on-failure
+
+      - name: Stage ASI for packaging
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path artifacts | Out-Null
+          Copy-Item -LiteralPath build\Release\DA2CinematicUIHider.asi -Destination artifacts\DA2CinematicUIHider.asi
+
+      - name: Package verified release layout
+        shell: powershell
+        run: .\scripts\package.ps1 -SkipBuild
+
+      - name: Upload package
+        uses: actions/upload-artifact@v4
+        with:
+          name: DA2-Cinematic-UI-Hider-v0.1.0
+          path: artifacts/DA2-Cinematic-UI-Hider-v0.1.0.zip
