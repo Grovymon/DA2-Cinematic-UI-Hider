@@ -175,3 +175,9 @@ This project is not affiliated with or endorsed by BioWare or Electronic Arts.
 ## License
 
 The mod source is MIT licensed. See [LICENSE](LICENSE). Third-party notices are in [THIRD_PARTY_LICENSES](THIRD_PARTY_LICENSES).
+
+---
+
+## Community / Сообщество
+
+💬 **[Join the Discord server / Присоединиться к Discord-серверу](https://discord.gg/gUPsQCnTeN)**
